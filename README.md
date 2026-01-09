@@ -1,1 +1,1 @@
-este es un sistema echo en laravel
+Este sistema esta echo en laravel  con MYSQL 
