@@ -3,6 +3,7 @@
 use App\Http\Controllers\AechivoHController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\categoriasController;
 use App\Http\Controllers\PanelController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
@@ -14,14 +15,14 @@ Route::get('/login', [LoginController::class, 'index'])->name('login');
 Route::post('/login', [LoginController::class, 'login']);
 
  
-  
+
 
 Route::middleware('auth')->group(function () {
 
     Route::get('/panel', [PanelController::class, 'inicio']);
 
     // Usuarios
- Route::get('/usuarios', [UserController::class, 'index'])->name('users.index');
+   Route::get('/usuarios', [UserController::class, 'index'])->name('users.index');
  Route::post('/usuarios', [UserController::class, 'store'])->name('user.store');
     
     Route::delete('usuarios/{user}',[UserController::class, 'DeleteUser'])->name('user.delete');
@@ -32,10 +33,12 @@ Route::put('/usuarios/{user}/editar', [UserController::class, 'update'])->name('
 
 
     //historico
-    Route::get('/archivo_historico', [PanelController::class, 'historico']);
+    Route::get('/archivo_historico', [AechivoHController::class, 'historico'])->name('categoria.store');
     Route::post('/archivo_historico',[AechivoHController::class,'saveCategoria'])->name('archivoh.categoria');
 
-
+    //categorias
+    Route::get('/categoria/gestionar/{cat}',[categoriasController::class, 'gestion'])
+      ->name('categorias.gestionar');
 
     Route::post('/logout', function (Request $request) {
         Auth::logout();

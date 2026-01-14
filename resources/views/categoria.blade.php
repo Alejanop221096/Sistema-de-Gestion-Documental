@@ -5,7 +5,7 @@
 @section('content')
 <div class="card shadow">
     <div class="card-body">
-        <h2>Archivo Historico</h2>
+        <h2>Gestion de la categoria ({{$cat->nombre}})</h2>
         <p>Bienvenido, <strong>{{ auth()->user()->name }}</strong></p>
 
         
@@ -19,7 +19,7 @@
   <div class="accordion-item">
     <h2 class="accordion-header">
       <button class="accordion-button collapsed bg-light text-success fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-        + Agregar Categoria
+        + Agregar contenedor a la categoria
       </button>
     </h2>
     <div id="collapseOne" class="accordion-collapse collapse hidden" data-bs-parent="#accordionExample">
@@ -28,16 +28,16 @@
                                 @csrf
                                 <div class="row">
                                     <div class="col-md-4 mb-3">
-                                        <label class="form-label fw-bold">Categoria </label>
+                                        <label class="form-label fw-bold">No. Categoria </label>
                                         <input type="text" name="nombre" class="form-control @error('name') is-invalid @enderror" 
-                                               value="{{ old('name') }}" placeholder="Nombre de la seccion" required>
+                                               value="{{$cat->id}}" placeholder="Nombre de la seccion" required>
                                         @error('name') <div class="invalid-feedback">{{ $message }}</div> @enderror
                                     </div>
 
                                     <div class="col-md-4 mb-3">
-                                        <label class="form-label fw-bold">Ubicacion</label>
+                                        <label class="form-label fw-bold">Nombre de la Categoria </label>
                                         <input type="text" name="ubicacion" class="form-control" 
-                                               value="{{ old('lugar') }}" placeholder="ingresa el lugar donde de ubica en fisico la seccion" required>
+                                               value="{{ $cat->nombre }}" placeholder="ingresa el lugar donde de ubica en fisico la seccion" required>
                                         @error('email') 
                                             <div class="invalid-feedback">{{ $message }}</div> 
                                         @enderror
@@ -49,7 +49,7 @@
 
                                     <div class="col-md-12 text-end pt-2">
                                         <button type="submit" class="btn btn-success px-5 shadow-sm">
-                                            <i class="fas fa-save me-1"></i> Guardar Usuario
+                                            <i class="fas fa-save me-1"></i> Generar contenedor o caja
                                         </button>
                                     </div>
                                 </div>
@@ -73,23 +73,23 @@
         </thead>
         <tbody>
             {{-- Inicio del Loop --}}
-            @foreach($categoria as $item)
+          
             <tr>
-                <td class="align-middle"><strong>{{ $item->id }}</strong></td>
-                <td class="align-middle">{{ $item->nombre }}</td>
-                <td class="align-middle">{{ $item->ubicacion }}</td>
+                <td class="align-middle"><strong></strong></td>
+                <td class="align-middle"></td>
+                <td class="align-middle"></td>
                 <td class="text-center align-middle">
                     <div class="btn-group" role="group">
-                        <a href="/categoria/gestionar/{{ $item->id }}" class="btn btn-outline-primary btn-sm">
+                        <a href="" class="btn btn-outline-primary btn-sm">
                             <i class="bi bi-pencil"></i>Gestionar categoria
                         </a>
-                        <button type="button" class="btn btn-outline-danger btn-sm" onclick="confirmarEliminar({{ $item->id }})">
+                        <button type="button" class="btn btn-outline-danger btn-sm">
                             <i class="bi bi-trash"></i>eliminar
                         </button>
                     </div>
                 </td>
             </tr>
-            @endforeach
+          
             {{-- Fin del Loop --}}
         </tbody>
     </table>

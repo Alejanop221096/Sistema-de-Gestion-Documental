@@ -21,4 +21,11 @@ class AechivoHController extends Controller
         return redirect()->back()->with('success', '¡Categoria creada exitosamente!');
         
     }
+
+    public function historico(){
+
+        $categoria=Categoria::all();
+        
+        return view('archivoh', compact('categoria'));
+    }
 }
