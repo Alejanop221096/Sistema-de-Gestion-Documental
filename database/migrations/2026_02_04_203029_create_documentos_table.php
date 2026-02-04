@@ -11,18 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('legajos', function (Blueprint $table) {
-        $table->id();
-        $table->string('nombre');
-        $table->string('codigo')->nullable();
-        
-        // ESTA ES LA LÍNEA QUE TE FALTA O ESTÁ MAL ESCRITA
-        $table->foreignId('caja_id')->constrained('cajas')->onDelete('cascade');
-        
+        Schema::create('documentos', function (Blueprint $table) {
+           $table->id();
+        $table->foreignId('legajo_id')->constrained()->onDelete('cascade');
+        $table->string('nombre_documento'); // Ej: Acta de Nacimiento
+        $table->string('descripcion')->nullable(); // Ej: Original, Copia, Legible
         $table->timestamps();
-    });
-
-
+        });
     }
 
     /**
@@ -30,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('cajas');
+        Schema::dropIfExists('documentos');
     }
 };

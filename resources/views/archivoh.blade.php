@@ -24,7 +24,7 @@
     </h2>
     <div id="collapseOne" class="accordion-collapse collapse hidden" data-bs-parent="#accordionExample">
       <div class="accordion-body">
-             <form action="{{ route('archivoh.categoria') }}" method="POST">
+             <form action="{{ route('archivoh.categoria')}}" method="POST">
                                 @csrf
                                 <div class="row">
                                     <div class="col-md-4 mb-3">
@@ -83,9 +83,9 @@
                         <a href="/categoria/gestionar/{{ $item->id }}" class="btn btn-outline-primary btn-sm">
                             <i class="bi bi-pencil"></i>Gestionar categoria
                         </a>
-                        <button type="button" class="btn btn-outline-danger btn-sm" onclick="confirmarEliminar({{ $item->id }})">
+                        <a href="{{route('delete.categoria',$item->id )}}" type="button" class="btn btn-outline-danger btn-sm" onclick="confirmarEliminar({{ $item->id }})">
                             <i class="bi bi-trash"></i>eliminar
-                        </button>
+                        </a>
                     </div>
                 </td>
             </tr>

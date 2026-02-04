@@ -16,13 +16,11 @@ return new class extends Migration
         $table->string('nombre');
         $table->string('codigo')->nullable();
         
-        // ESTA ES LA LÍNEA QUE TE FALTA O ESTÁ MAL ESCRITA
+        // ESTA LÍNEA ES LA QUE CREA EL CAMPO EN LA BD
         $table->foreignId('caja_id')->constrained('cajas')->onDelete('cascade');
         
         $table->timestamps();
-    });
-
-
+        });
     }
 
     /**
@@ -30,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('cajas');
+        Schema::dropIfExists('legajos');
     }
 };
